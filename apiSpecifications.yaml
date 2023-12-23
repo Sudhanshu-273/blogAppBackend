@@ -1,0 +1,237 @@
+{
+  "openapi": "3.0.0",
+  "paths":
+    {
+      "/":
+        {
+          "get":
+            {
+              "operationId": "AppController_getHello",
+              "parameters": [],
+              "responses": { "200": { "description": "" } },
+            },
+        },
+      "/user/id":
+        {
+          "get":
+            {
+              "operationId": "UserController_getUserById",
+              "parameters": [],
+              "responses": { "200": { "description": "" } },
+              "tags": ["User"],
+            },
+        },
+      "/auth/create-account":
+        {
+          "post":
+            {
+              "operationId": "AuthController_createAccount",
+              "parameters": [],
+              "requestBody":
+                {
+                  "required": true,
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            { "$ref": "#/components/schemas/CreateUserDto" },
+                        },
+                    },
+                },
+              "responses": { "201": { "description": "" } },
+              "tags": ["Auth"],
+            },
+        },
+      "/auth/login":
+        {
+          "post":
+            {
+              "operationId": "AuthController_loginUser",
+              "parameters": [],
+              "requestBody":
+                {
+                  "required": true,
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            { "$ref": "#/components/schemas/LoginUserDto" },
+                        },
+                    },
+                },
+              "responses": { "201": { "description": "" } },
+              "tags": ["Auth"],
+            },
+        },
+      "/auth/logout-user":
+        {
+          "post":
+            {
+              "operationId": "AuthController_logout",
+              "parameters": [],
+              "responses": { "201": { "description": "" } },
+              "tags": ["Auth"],
+            },
+        },
+      "/posts":
+        {
+          "get":
+            {
+              "operationId": "PostsController_getPosts",
+              "parameters": [],
+              "responses": { "200": { "description": "" } },
+              "tags": ["Posts"],
+            },
+        },
+      "/posts/all":
+        {
+          "get":
+            {
+              "operationId": "PostsController_getAllPosts",
+              "parameters": [],
+              "responses": { "200": { "description": "" } },
+              "tags": ["Posts"],
+            },
+        },
+      "/posts/new":
+        {
+          "post":
+            {
+              "operationId": "PostsController_createPost",
+              "parameters": [],
+              "requestBody":
+                {
+                  "required": true,
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            { "$ref": "#/components/schemas/CreatePostDto" },
+                        },
+                    },
+                },
+              "responses": { "201": { "description": "" } },
+              "tags": ["Posts"],
+            },
+        },
+      "/profile/update":
+        {
+          "post":
+            {
+              "operationId": "ProfileController_updateProfile",
+              "parameters": [],
+              "requestBody":
+                {
+                  "required": true,
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            { "$ref": "#/components/schemas/UpdateProfileDto" },
+                        },
+                    },
+                },
+              "responses": { "201": { "description": "" } },
+              "tags": ["Profile"],
+            },
+        },
+      "/profile/completed":
+        {
+          "get":
+            {
+              "operationId": "ProfileController_is_completed",
+              "parameters": [],
+              "responses": { "200": { "description": "" } },
+              "tags": ["Profile"],
+            },
+        },
+      "/profile/view":
+        {
+          "get":
+            {
+              "operationId": "ProfileController_view",
+              "parameters": [],
+              "responses": { "200": { "description": "" } },
+              "tags": ["Profile"],
+            },
+        },
+    },
+  "info":
+    {
+      "title": "Todo App API",
+      "description": "The Todos API description",
+      "version": "1.0",
+      "contact": {},
+    },
+  "tags": [],
+  "servers": [],
+  "components":
+    {
+      "schemas":
+        {
+          "CreateUserDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "username": { "type": "string", "example": "sudhanshu" },
+                  "email":
+                    { "type": "string", "example": "sudhanshu@gmail.com" },
+                  "password": { "type": "string", "example": "123456" },
+                },
+              "required": ["username", "email", "password"],
+            },
+          "LoginUserDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "email":
+                    { "type": "string", "example": "sudhanshu@gmail.com" },
+                  "password": { "type": "string", "example": "123456" },
+                },
+              "required": ["email", "password"],
+            },
+          "CreatePostDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "title": { "type": "string", "example": "Nishant Fucking" },
+                  "category": { "type": "string", "example": "Sports" },
+                  "date":
+                    {
+                      "format": "date-time",
+                      "type": "string",
+                      "example": "2023-12-11",
+                    },
+                  "description":
+                    {
+                      "type": "string",
+                      "example": "iufdh weofyg qwefhy wyui qewofig qwefdyu sdfiu ewqrfuyg eruoyfhg eruhfg erjhfg eukhrfufgruf",
+                    },
+                },
+              "required": ["title", "category", "date", "description"],
+            },
+          "UpdateProfileDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "name": { "type": "string", "example": "Aditya" },
+                  "designation":
+                    { "type": "string", "example": "Web Developer" },
+                  "image": { "type": "string", "example": "image_url" },
+                },
+              "required": ["name", "designation", "image"],
+            },
+        },
+    },
+}
+
+# run this command to generate this file
+# curl -o swagger.yaml http://localhost:3000/api/docs-json 
